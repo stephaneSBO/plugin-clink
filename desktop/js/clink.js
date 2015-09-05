@@ -43,12 +43,13 @@
     tr += '<option value="modal">{{Modale}}</option>';
     tr += '<option value="current">{{Fenetre courante}}</option>';
     tr += '<option value="newTab">{{Nouvel onglet}}</option>';
-    tr += '<option value="newWindow">{{Nouvel fenêtre}}</option>';
     tr += '</select>';
     tr += '<div class="input-group-addon">{{Type}}</div>';
     tr += '<select class="form-control cmdAttr" data-l1key="configuration" data-l2key="type">';
     tr += '<option value="view">{{Vue}}</option>';
     tr += '<option value="plan">{{Design}}</option>';
+    tr += '<option value="panel">{{Panel}}</option>';
+    tr += '<option value="url">{{URL}}</option>';
     tr += '</select>';
     tr += '<div class="input-group-addon">{{Nom}}</div>';
     tr += '<div class="div_cmdTypeOption"></div>';
@@ -93,7 +94,9 @@
                 option += '<option value="'+users[i].id+'">'+users[i].login+'</option>';
             }
             $('#table_cmd tbody tr:last .cmdAttr[data-l1key=configuration][data-l2key=filter_user]').empty().append(option);
-            $('#table_cmd tbody tr:last .cmdAttr[data-l1key=configuration][data-l2key=type]').change();
+            if(!isset(_cmd.configuration.type)){
+                $('#table_cmd tbody tr:last .cmdAttr[data-l1key=configuration][data-l2key=type]').change();
+            }
             $('#table_cmd tbody tr:last').setValues(_cmd, '.cmdAttr');
             if (isset(_cmd.type)) {
                 $('#table_cmd tbody tr:last .cmdAttr[data-l1key=type]').value(init(_cmd.type));
@@ -131,4 +134,22 @@ $('#table_cmd tbody').on('change','.cmdAttr[data-l1key=configuration][data-l2key
             }
         });
     }
+    if($(this).value() == 'panel'){
+        jeedom.plugin.all({
+            success : function(plugins){
+                var option = '<select class="form-control cmdAttr" data-l1key="configuration" data-l2key="link">';
+                for(var i in plugins){
+                    if(plugins[i].display != ''){
+                        option += '<option value="m='+plugins[i].id+'&p='+plugins[i].display+'">'+plugins[i].name+'</option>';
+                    }
+                }
+                option += '</select>';
+                option_cmd.empty().append(option);
+            }
+        });
+    }
+    if($(this).value() == 'url'){
+      var option = '<input class="form-control cmdAttr" data-l1key="configuration" data-l2key="link" />';
+      option_cmd.empty().append(option);
+  }
 });
