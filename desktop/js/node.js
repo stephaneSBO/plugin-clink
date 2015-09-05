@@ -1,7 +1,6 @@
 $('body').one('nodeJsConnect', function () {
 	socket.on('clink::event', function (_options) {
 		var cmd = json_decode(_options);
-		console.log(cmd);
 		if(cmd.configuration.filter_page != 'all' && window.location.href.indexOf('p='+cmd.configuration.filter_page) < 0){
 			return;
 		}
@@ -15,7 +14,6 @@ $('body').one('nodeJsConnect', function () {
 		}else{
 			var url = 'index.php?v=d&p='+cmd.configuration.type+'&'+cmd.configuration.type+'_id='+cmd.configuration.link;
 		}
-		console.log(url);
 		switch(cmd.configuration.mode) {
 			case 'current':
 			window.location.href = url;

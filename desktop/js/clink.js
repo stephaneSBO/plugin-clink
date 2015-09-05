@@ -41,7 +41,7 @@
     tr += '<div class="input-group-addon">{{Mode}}</div>';
     tr += '<select class="form-control cmdAttr" data-l1key="configuration" data-l2key="mode">';
     tr += '<option value="modal">{{Modale}}</option>';
-    tr += '<option value="current">{{Fenetre courante}}</option>';
+    tr += '<option value="current">{{Fenêtre courante}}</option>';
     tr += '<option value="newTab">{{Nouvel onglet}}</option>';
     tr += '</select>';
     tr += '<div class="input-group-addon">{{Type}}</div>';
@@ -98,10 +98,10 @@
                 $('#table_cmd tbody tr:last .cmdAttr[data-l1key=configuration][data-l2key=type]').change();
             }
             $('#table_cmd tbody tr:last').setValues(_cmd, '.cmdAttr');
-            if (isset(_cmd.type)) {
-                $('#table_cmd tbody tr:last .cmdAttr[data-l1key=type]').value(init(_cmd.type));
-            }
-            jeedom.cmd.changeType($('#table_cmd tbody tr:last'), init(_cmd.subType));
+            $('#table_cmd tbody tr:last').one('typeFinish',function(){
+               $('#table_cmd tbody tr:last').setValues(_cmd, '.cmdAttr');
+               modifyWithoutSave = false;
+           });
         }
     });
 }
@@ -119,6 +119,7 @@ $('#table_cmd tbody').on('change','.cmdAttr[data-l1key=configuration][data-l2key
                 }
                 option += '</select>';
                 option_cmd.empty().append(option);
+                cmd.trigger('typeFinish');
             }
         });
     }
@@ -131,6 +132,7 @@ $('#table_cmd tbody').on('change','.cmdAttr[data-l1key=configuration][data-l2key
                 }
                 option += '</select>';
                 option_cmd.empty().append(option);
+                cmd.trigger('typeFinish');
             }
         });
     }
@@ -145,11 +147,13 @@ $('#table_cmd tbody').on('change','.cmdAttr[data-l1key=configuration][data-l2key
                 }
                 option += '</select>';
                 option_cmd.empty().append(option);
+                cmd.trigger('typeFinish');
             }
         });
     }
     if($(this).value() == 'url'){
       var option = '<input class="form-control cmdAttr" data-l1key="configuration" data-l2key="link" />';
       option_cmd.empty().append(option);
+      cmd.trigger('typeFinish');
   }
 });
