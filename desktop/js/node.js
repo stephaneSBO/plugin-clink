@@ -10,6 +10,9 @@ $('body').one('nodeJsConnect', function () {
 		if(cmd.configuration.filter_interface != 'all' && cmd.configuration.filter_interface != 'desktop'){
 			return;
 		}
+		if(isset(cmd.utid) && cmd.utid != utid){
+			return;
+		}
 		if(cmd.configuration.type == 'url'){
 			var url = cmd.configuration.link;
 		}else if(cmd.configuration.type == 'panel'){
@@ -40,6 +43,9 @@ $('body').one('nodeJsConnect', function () {
 
 socket.on('clink::close', function (_options) {
 	var cmd = json_decode(_options);
+	if(isset(cmd.utid) && cmd.utid != utid){
+		return;
+	}
 	if($('#md_modal[data-clink='+cmd.eqLogic_id+']').html() != undefined && $('#md_modal[data-clink='+cmd.eqLogic_id+']').dialog( "isOpen" )){
 		$('#md_modal[data-clink='+cmd.eqLogic_id+']').dialog( "close" );
 		$('#md_modal[data-clink='+cmd.eqLogic_id+']').removeAttr('data-clink');

@@ -51,10 +51,14 @@ class clinkCmd extends cmd {
 	/*     * *********************Methode d'instance************************* */
 
 	public function execute($_options = array()) {
+		$array = utils::o2a($this);
+		if (isset($_options['utid'])) {
+			$array['utid'] = $_options['utid'];
+		}
 		if ($this->getLogicalId() == 'close') {
-			nodejs::pushUpdate('clink::close', utils::o2a($this));
+			nodejs::pushUpdate('clink::close', $array);
 		} else {
-			nodejs::pushUpdate('clink::open', utils::o2a($this));
+			nodejs::pushUpdate('clink::open', $array);
 		}}
 
 	/*     * **********************Getteur Setteur*************************** */

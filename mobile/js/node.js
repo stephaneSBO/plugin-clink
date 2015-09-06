@@ -7,6 +7,9 @@ $('body').one('nodeJsConnect', function () {
 		if(cmd.configuration.filter_interface != 'all' && cmd.configuration.filter_interface != 'mobile'){
 			return;
 		}
+		if(isset(cmd.utid) && cmd.utid != utid){
+			return;
+		}
 		if(cmd.configuration.type == 'url'){
 			var url = cmd.configuration.link;
 		}else if(cmd.configuration.type == 'panel'){
@@ -50,6 +53,9 @@ $('body').one('nodeJsConnect', function () {
 	});
 
 socket.on('clink::close', function (_options) {
+	if(isset(cmd.utid) && cmd.utid != utid){
+		return;
+	}
 	$("#popupDialog").popup( "close" );
 });
 });
