@@ -32,51 +32,64 @@
     tr += '<span class="cmdAttr" data-l1key="id" style="display:none;"></span>';
     tr += '<span class="cmdAttr" data-l1key="type" style="display:none;">action</span>';
     tr += '<span class="cmdAttr" data-l1key="subtype" style="display:none;">other</span>';
-    tr += '<input class="cmdAttr form-control input-sm" data-l1key="name" style="width : 140px;" placeholder="{{Nom}}">';
+    tr += '<div class="row">';
+    tr += '<div class="col-sm-6">';
+    tr += '<a class="cmdAction btn btn-default btn-sm" data-l1key="chooseIcon"><i class="fa fa-flag"></i> Icône</a>';
+    tr += '<span class="cmdAttr" data-l1key="display" data-l2key="icon" style="margin-left : 10px;"></span>';
+    tr += '</div>';
+    tr += '<div class="col-sm-6">';
+    tr += '<input class="cmdAttr form-control input-sm" data-l1key="name">';
+    tr += '</div>';
+    tr += '</div>';
     tr += '</td>';
     tr += '<td>';
-    tr += '<form class="form-inline">';
-    tr += '<div class="form-group">';
-    tr += '<div class="input-group">';
-    tr += '<div class="input-group-addon">{{Mode}}</div>';
-    tr += '<select class="form-control cmdAttr" data-l1key="configuration" data-l2key="mode">';
-    tr += '<option value="modal">{{Modale}}</option>';
-    tr += '<option value="current">{{Fenêtre courante}}</option>';
-    tr += '<option value="newTab">{{Nouvel onglet}}</option>';
-    tr += '</select>';
-    tr += '<div class="input-group-addon">{{Type}}</div>';
-    tr += '<select class="form-control cmdAttr" data-l1key="configuration" data-l2key="type">';
-    tr += '<option value="view">{{Vue}}</option>';
-    tr += '<option value="plan">{{Design}}</option>';
-    tr += '<option value="panel">{{Panel}}</option>';
-    tr += '<option value="url">{{URL}}</option>';
-    tr += '</select>';
-    tr += '<div class="input-group-addon">{{Nom}}</div>';
-    tr += '<div class="div_cmdTypeOption"></div>';
-    tr += '</div>';
-    tr += '</div>';
-    tr += '</form>';
-    tr += '<form class="form-inline" style="margin-top : 5px;">';
-    tr += '<div class="form-group">';
-    tr += '<div class="input-group">';
-    tr += '<div class="input-group-addon">{{Filtre utilisateur}}</div>';
-    tr += '<select class="form-control cmdAttr" data-l1key="configuration" data-l2key="filter_user">';
-    tr += '<option value="all">{{Tous}}</option>';
-    tr += '</select>';
-    tr += '<div class="input-group-addon">{{Filtre page}}</div>';
-    tr += '<select class="form-control cmdAttr" data-l1key="configuration" data-l2key="filter_page">';
-    tr += '<option value="all">{{Toute}}</option>';
-    tr += '<option value="plan">{{Design}}</option>';
-    tr += '<option value="view">{{Vue}}</option>';
-    tr += '<option value="dashboard">{{Dashboard}}</option>';
-    tr += '</select>';
-    tr += '<div class="input-group-addon">{{Filtre interface}}</div>';
-    tr += '<select class="form-control cmdAttr" data-l1key="configuration" data-l2key="filter_interface">';
-    tr += '<option value="desktop">{{Desktop}}</option>';
-    tr += '</select>';
-    tr += '</div>';
-    tr += '</div>';
-    tr += '</form>';
+    if(!isset(_cmd.logicalId) || _cmd.logicalId != 'close'){
+        tr += '<form class="form-inline">';
+        tr += '<div class="form-group">';
+        tr += '<div class="input-group">';
+        tr += '<div class="input-group-addon">{{Mode}}</div>';
+        tr += '<select class="form-control cmdAttr" data-l1key="configuration" data-l2key="mode">';
+        tr += '<option value="modal">{{Modale}}</option>';
+        tr += '<option value="current">{{Fenêtre courante}}</option>';
+        tr += '<option value="newTab">{{Nouvel onglet}}</option>';
+        tr += '</select>';
+        tr += '<div class="input-group-addon">{{Type}}</div>';
+        tr += '<select class="form-control cmdAttr" data-l1key="configuration" data-l2key="type">';
+        tr += '<option value="view">{{Vue}}</option>';
+        tr += '<option value="plan">{{Design}}</option>';
+        tr += '<option value="panel">{{Panel}}</option>';
+        tr += '<option value="url">{{URL}}</option>';
+        tr += '</select>';
+        tr += '<div class="input-group-addon">{{Nom}}</div>';
+        tr += '<div class="div_cmdTypeOption"></div>';
+        tr += '</div>';
+        tr += '</div>';
+        tr += '</form>';
+        tr += '<form class="form-inline" style="margin-top : 5px;">';
+        tr += '<div class="form-group">';
+        tr += '<div class="input-group">';
+        tr += '<div class="input-group-addon">{{Filtre utilisateur}}</div>';
+        tr += '<select class="form-control cmdAttr" data-l1key="configuration" data-l2key="filter_user">';
+        tr += '<option value="all">{{Tous}}</option>';
+        tr += '</select>';
+        tr += '<div class="input-group-addon">{{Filtre page}}</div>';
+        tr += '<select class="form-control cmdAttr" data-l1key="configuration" data-l2key="filter_page">';
+        tr += '<option value="all">{{Toute}}</option>';
+        tr += '<option value="plan">{{Design}}</option>';
+        tr += '<option value="view">{{Vue}}</option>';
+        tr += '<option value="dashboard">{{Dashboard}}</option>';
+        tr += '</select>';
+        tr += '<div class="input-group-addon">{{Filtre interface}}</div>';
+        tr += '<select class="form-control cmdAttr" data-l1key="configuration" data-l2key="filter_interface">';
+        tr += '<option value="desktop">{{Desktop}}</option>';
+        tr += '</select>';
+        tr += '</div>';
+        tr += '</div>';
+        tr += '</form>';
+    }
+    tr += '</td>';
+    tr += '<td>';
+    tr += '<span><input type="checkbox" class="cmdAttr bootstrapSwitch" data-l1key="isVisible" data-size="mini" data-label-text="{{Afficher}}" checked/></span> ';
     tr += '</td>';
     tr += '<td>';
     if (is_numeric(_cmd.id)) {
@@ -87,23 +100,27 @@
     tr += '</td>';
     tr += '</tr>';
     $('#table_cmd tbody').append(tr);
-    jeedom.user.all({
-        success : function(users){
-            var option = '<option value="all">{{Tous}}</option>';
-            for(var i in users){
-                option += '<option value="'+users[i].id+'">'+users[i].login+'</option>';
+    if(!isset(_cmd.logicalId) || _cmd.logicalId != 'close'){
+        jeedom.user.all({
+            success : function(users){
+                var option = '<option value="all">{{Tous}}</option>';
+                for(var i in users){
+                    option += '<option value="'+users[i].id+'">'+users[i].login+'</option>';
+                }
+                $('#table_cmd tbody tr:last .cmdAttr[data-l1key=configuration][data-l2key=filter_user]').empty().append(option);
+                if(!isset(_cmd.configuration.type)){
+                    $('#table_cmd tbody tr:last .cmdAttr[data-l1key=configuration][data-l2key=type]').change();
+                }
+                $('#table_cmd tbody tr:last').setValues(_cmd, '.cmdAttr');
+                $('#table_cmd tbody tr:last').one('typeFinish',function(){
+                   $('#table_cmd tbody tr:last').setValues(_cmd, '.cmdAttr');
+                   modifyWithoutSave = false;
+               });
             }
-            $('#table_cmd tbody tr:last .cmdAttr[data-l1key=configuration][data-l2key=filter_user]').empty().append(option);
-            if(!isset(_cmd.configuration.type)){
-                $('#table_cmd tbody tr:last .cmdAttr[data-l1key=configuration][data-l2key=type]').change();
-            }
-            $('#table_cmd tbody tr:last').setValues(_cmd, '.cmdAttr');
-            $('#table_cmd tbody tr:last').one('typeFinish',function(){
-               $('#table_cmd tbody tr:last').setValues(_cmd, '.cmdAttr');
-               modifyWithoutSave = false;
-           });
-        }
-    });
+        });
+    }else{
+       $('#table_cmd tbody tr:last').setValues(_cmd, '.cmdAttr'); 
+   }
 }
 
 

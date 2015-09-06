@@ -1,5 +1,5 @@
 $('body').one('nodeJsConnect', function () {
-	socket.on('clink::event', function (_options) {
+	socket.on('clink::open', function (_options) {
 		var cmd = json_decode(_options);
 		if(cmd.configuration.filter_page != 'all' && window.location.href.indexOf('p='+cmd.configuration.filter_page) < 0){
 			return;
@@ -23,6 +23,7 @@ $('body').one('nodeJsConnect', function () {
 			return;
 			case 'modal':
 			$('#md_modal').dialog({title: "{{Clink}}"});
+			$('#md_modal').attr('data-clink',cmd.eqLogic_id);
 			if(cmd.configuration.type == 'url'){
 				$('#md_modal').load('index.php?v=d&plugin=clink&modal=iframe.clink&url=' + encodeURI(url)).dialog('open');
 			}else{
@@ -32,4 +33,12 @@ $('body').one('nodeJsConnect', function () {
 		}
 		
 	});
+
+socket.on('clink::close', function (_options) {
+	var cmd = json_decode(_options);
+	if($('#md_modal[data-clink='+cmd.eqLogic_id+']').html() != undefined && $('#md_modal[data-clink='+cmd.eqLogic_id+']').dialog( "isOpen" )){
+		$('#md_modal[data-clink='+cmd.eqLogic_id+']').dialog( "close" );
+		$('#md_modal[data-clink='+cmd.eqLogic_id+']').removeAttr('data-clink');
+	}
+});
 });

@@ -26,6 +26,20 @@ class clink extends eqLogic {
 
 	/*     * *********************Methode d'instance************************* */
 
+	public function postSave() {
+		$close = $this->getCmd(null, 'close');
+		if (!is_object($close)) {
+			$close = new clinkCmd();
+			$close->setLogicalId('close');
+			$close->setIsVisible(1);
+			$close->setName(__('Fermer', __FILE__));
+		}
+		$close->setType('action');
+		$close->setSubType('other');
+		$close->setEqLogic_id($this->getId());
+		$close->save();
+	}
+
 	/*     * **********************Getteur Setteur*************************** */
 }
 
@@ -37,8 +51,11 @@ class clinkCmd extends cmd {
 	/*     * *********************Methode d'instance************************* */
 
 	public function execute($_options = array()) {
-		nodejs::pushUpdate('clink::event', utils::o2a($this));
-	}
+		if ($this->getLogicalId() == 'close') {
+			nodejs::pushUpdate('clink::close', utils::o2a($this));
+		} else {
+			nodejs::pushUpdate('clink::open', utils::o2a($this));
+		}}
 
 	/*     * **********************Getteur Setteur*************************** */
 }

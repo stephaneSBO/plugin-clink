@@ -85,7 +85,7 @@ foreach (object::all() as $object) {
 <table id="table_cmd" class="table table-bordered table-condensed">
     <thead>
         <tr>
-            <th>{{Nom}}</th><th>{{Paramètres}}</th><th></th>
+            <th>{{Nom}}</th><th>{{Paramètres}}</th><th>{{Option}}</th><th></th>
         </tr>
     </thead>
     <tbody>
