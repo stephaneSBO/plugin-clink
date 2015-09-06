@@ -7,10 +7,14 @@ $('body').one('nodeJsConnect', function () {
 		if(cmd.configuration.filter_user != 'all' && user_id != cmd.configuration.filter_user){
 			return;
 		}
+		if(cmd.configuration.filter_interface != 'all' && cmd.configuration.filter_interface != 'desktop'){
+			return;
+		}
 		if(cmd.configuration.type == 'url'){
 			var url = cmd.configuration.link;
 		}else if(cmd.configuration.type == 'panel'){
-			var url = 'index.php?v=d&'+cmd.configuration.link;
+			var panel = cmd.configuration.link.split(":")
+			var url = 'index.php?v=d&m='+panel[0]+'&p='+panel[1];
 		}else{
 			var url = 'index.php?v=d&p='+cmd.configuration.type+'&'+cmd.configuration.type+'_id='+cmd.configuration.link;
 		}

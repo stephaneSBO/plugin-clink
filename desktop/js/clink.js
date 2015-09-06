@@ -81,7 +81,9 @@
         tr += '</select>';
         tr += '<div class="input-group-addon">{{Filtre interface}}</div>';
         tr += '<select class="form-control cmdAttr" data-l1key="configuration" data-l2key="filter_interface">';
+        tr += '<option value="all">{{Toute}}</option>';
         tr += '<option value="desktop">{{Desktop}}</option>';
+        tr += '<option value="mobile">{{Mobile}}</option>';
         tr += '</select>';
         tr += '</div>';
         tr += '</div>';
@@ -158,8 +160,15 @@ $('#table_cmd tbody').on('change','.cmdAttr[data-l1key=configuration][data-l2key
             success : function(plugins){
                 var option = '<select class="form-control cmdAttr" data-l1key="configuration" data-l2key="link">';
                 for(var i in plugins){
-                    if(plugins[i].display != ''){
-                        option += '<option value="m='+plugins[i].id+'&p='+plugins[i].display+'">'+plugins[i].name+'</option>';
+                    if(plugins[i].display != '' || plugins[i].mobile != ''){
+                        option += '<option value="'+plugins[i].id+':'+plugins[i].display+'">'+plugins[i].name+' (';
+                        if(plugins[i].display != ''){
+                            option += ' desktop';
+                        }
+                        if(plugins[i].mobile != ''){
+                            option += ' mobile';
+                        }
+                        option += ' )</option>';
                     }
                 }
                 option += '</select>';
