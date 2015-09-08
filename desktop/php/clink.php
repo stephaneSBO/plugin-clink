@@ -21,20 +21,9 @@ foreach ($eqLogics as $eqLogic) {
      </ul>
    </div>
  </div>
- <div class="form-group">
-  <label class="col-sm-3 control-label">Catégorie</label>
-  <div class="col-sm-9">
-    <?php
-foreach (jeedom::getConfiguration('eqLogic:category') as $key => $value) {
-	echo '<label class="checkbox-inline">';
-	echo '<input type="checkbox" class="eqLogicAttr" data-l1key="category" data-l2key="' . $key . '" />' . $value['name'];
-	echo '</label>';
-}
-?>
-  </div>
-</div>
 
-<div class="col-lg-10 col-md-9 col-sm-8 eqLogicThumbnailDisplay" style="border-left: solid 1px #EEE; padding-left: 25px;">
+
+ <div class="col-lg-10 col-md-9 col-sm-8 eqLogicThumbnailDisplay" style="border-left: solid 1px #EEE; padding-left: 25px;">
   <legend>{{Mes clinks}}
   </legend>
   <div class="eqLogicThumbnailContainer">
@@ -83,6 +72,18 @@ foreach (object::all() as $object) {
        </div>
      </div>
      <div class="form-group">
+      <label class="col-sm-3 control-label">Catégorie</label>
+      <div class="col-sm-9">
+        <?php
+foreach (jeedom::getConfiguration('eqLogic:category') as $key => $value) {
+	echo '<label class="checkbox-inline">';
+	echo '<input type="checkbox" class="eqLogicAttr" data-l1key="category" data-l2key="' . $key . '" />' . $value['name'];
+	echo '</label>';
+}
+?>
+      </div>
+    </div>
+    <div class="form-group">
       <label class="col-sm-3 control-label"></label>
       <div class="col-sm-9">
        <input type="checkbox" class="eqLogicAttr bootstrapSwitch" data-label-text="{{Activer}}" data-l1key="isEnable" checked/>
