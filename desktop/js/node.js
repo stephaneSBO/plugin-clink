@@ -29,7 +29,7 @@ $('body').one('nodeJsConnect', function () {
 			window.open(url);
 			return;
 			case 'modal':
-			$('#md_modal').dialog({title: "{{Clink}}"});
+			$('#md_modal').dialog({title: cmd.name});
 			$('#md_modal').attr('data-clink',cmd.eqLogic_id);
 			if(cmd.configuration.type == 'url'){
 				$('#md_modal').load('index.php?v=d&plugin=clink&modal=iframe.clink&url=' + encodeURI(url)).dialog('open');
