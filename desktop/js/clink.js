@@ -113,9 +113,10 @@
                 if(!isset(_cmd.configuration.type)){
                     $('#table_cmd tbody tr:last .cmdAttr[data-l1key=configuration][data-l2key=type]').change();
                 }
-                $('#table_cmd tbody tr:last').setValues(_cmd, '.cmdAttr');
-                $('#table_cmd tbody tr:last').one('typeFinish',function(){
-                   $('#table_cmd tbody tr:last').setValues(_cmd, '.cmdAttr');
+                var tr =  $('#table_cmd tbody tr:last');
+                tr.setValues(_cmd, '.cmdAttr');
+                tr.one('typeFinish',function(){
+                   tr.setValues(_cmd, '.cmdAttr');
                    modifyWithoutSave = false;
                });
             }
