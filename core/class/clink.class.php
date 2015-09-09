@@ -31,7 +31,7 @@ class clink extends eqLogic {
 		if (!is_object($close)) {
 			$close = new clinkCmd();
 			$close->setLogicalId('close');
-			$close->setIsVisible(1);
+			$close->setIsVisible(0);
 			$close->setName(__('Fermer', __FILE__));
 		}
 		$close->setType('action');
