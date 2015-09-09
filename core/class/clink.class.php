@@ -59,7 +59,8 @@ class clinkCmd extends cmd {
 			nodejs::pushUpdate('clink::close', $array);
 		} else {
 			nodejs::pushUpdate('clink::open', $array);
-		}}
+		}
+	}
 
 	/*     * **********************Getteur Setteur*************************** */
 }
