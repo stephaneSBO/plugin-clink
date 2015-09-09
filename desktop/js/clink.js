@@ -15,7 +15,7 @@
  * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
  */
 
-
+ $("#table_cmd").sortable({axis: "y", cursor: "move", items: ".cmd", placeholder: "ui-state-highlight", tolerance: "intersect", forcePlaceholderSize: true});
 
 /*
  * Fonction pour l'ajout de commande, appellé automatiquement par plugin.template
@@ -102,6 +102,7 @@
     tr += '</td>';
     tr += '</tr>';
     $('#table_cmd tbody').append(tr);
+    var tr =  $('#table_cmd tbody tr:last');
     if(!isset(_cmd.logicalId) || _cmd.logicalId != 'close'){
         jeedom.user.all({
             success : function(users){
@@ -109,21 +110,20 @@
                 for(var i in users){
                     option += '<option value="'+users[i].id+'">'+users[i].login+'</option>';
                 }
-                $('#table_cmd tbody tr:last .cmdAttr[data-l1key=configuration][data-l2key=filter_user]').empty().append(option);
+                tr.find('.cmdAttr[data-l1key=configuration][data-l2key=filter_user]').empty().append(option);
                 if(!isset(_cmd.configuration.type)){
-                    $('#table_cmd tbody tr:last .cmdAttr[data-l1key=configuration][data-l2key=type]').change();
+                    tr.find('.cmdAttr[data-l1key=configuration][data-l2key=type]').change();
                 }
-                var tr =  $('#table_cmd tbody tr:last');
                 tr.setValues(_cmd, '.cmdAttr');
                 tr.one('typeFinish',function(){
-                   tr.setValues(_cmd, '.cmdAttr');
-                   modifyWithoutSave = false;
-               });
+                 tr.setValues(_cmd, '.cmdAttr');
+                 modifyWithoutSave = false;
+             });
             }
         });
     }else{
-       $('#table_cmd tbody tr:last').setValues(_cmd, '.cmdAttr'); 
-   }
+     $('#table_cmd tbody tr:last').setValues(_cmd, '.cmdAttr'); 
+ }
 }
 
 
@@ -163,20 +163,20 @@ $('#table_cmd tbody').on('change','.cmdAttr[data-l1key=configuration][data-l2key
                 for(var i in plugins){
                     if(plugins[i].display != '' || plugins[i].mobile != ''){
                         option += '<option value="'+plugins[i].id+':'+plugins[i].display+'">'+plugins[i].name+' (';
-                        if(plugins[i].display != ''){
-                            option += ' desktop';
-                        }
-                        if(plugins[i].mobile != ''){
-                            option += ' mobile';
-                        }
-                        option += ' )</option>';
-                    }
-                }
-                option += '</select>';
-                option_cmd.empty().append(option);
-                cmd.trigger('typeFinish');
-            }
-        });
+                            if(plugins[i].display != ''){
+                                option += ' desktop';
+                            }
+                            if(plugins[i].mobile != ''){
+                                option += ' mobile';
+                            }
+                            option += ' )</option>';
+    }
+}
+option += '</select>';
+option_cmd.empty().append(option);
+cmd.trigger('typeFinish');
+}
+});
     }
     if($(this).value() == 'url'){
       var option = '<input class="form-control cmdAttr" data-l1key="configuration" data-l2key="link" />';
