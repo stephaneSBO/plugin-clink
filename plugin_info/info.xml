@@ -9,6 +9,6 @@
     <installation>Aucune</installation>
     <require>1.209</require>
     <category>programming</category>
-    <nodejs>1</nodejs>
+    <eventjs>1</eventjs>
 </info>
 

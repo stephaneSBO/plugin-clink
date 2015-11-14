@@ -1,6 +1,5 @@
-$('body').one('nodeJsConnect', function () {
-	socket.on('clink::open', function (_options) {
-		var cmd = json_decode(_options);
+	$('body').on('clink::open', function (_event,_options) {
+		var cmd = _options;
 		if(cmd.configuration.filter_page != 'all' && window.location.href.indexOf('p='+cmd.configuration.filter_page) < 0){
 			return;
 		}
@@ -41,14 +40,13 @@ $('body').one('nodeJsConnect', function () {
 		
 	});
 
-socket.on('clink::close', function (_options) {
-	var cmd = json_decode(_options);
-	if(isset(cmd.utid) && cmd.utid != utid){
-		return;
-	}
-	if($('#md_modal[data-clink='+cmd.eqLogic_id+']').html() != undefined && $('#md_modal[data-clink='+cmd.eqLogic_id+']').dialog( "isOpen" )){
-		$('#md_modal[data-clink='+cmd.eqLogic_id+']').dialog( "close" );
-		$('#md_modal[data-clink='+cmd.eqLogic_id+']').removeAttr('data-clink');
-	}
-});
-});
+	$('body').on('clink::close', function (_event,_options) {
+		var cmd = _options;
+		if(isset(cmd.utid) && cmd.utid != utid){
+			return;
+		}
+		if($('#md_modal[data-clink='+cmd.eqLogic_id+']').html() != undefined && $('#md_modal[data-clink='+cmd.eqLogic_id+']').dialog( "isOpen" )){
+			$('#md_modal[data-clink='+cmd.eqLogic_id+']').dialog( "close" );
+			$('#md_modal[data-clink='+cmd.eqLogic_id+']').removeAttr('data-clink');
+		}
+	});

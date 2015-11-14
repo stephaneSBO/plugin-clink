@@ -56,9 +56,9 @@ class clinkCmd extends cmd {
 			$array['utid'] = $_options['utid'];
 		}
 		if ($this->getLogicalId() == 'close') {
-			nodejs::pushUpdate('clink::close', $array);
+			evend::add('clink::close', $array);
 		} else {
-			nodejs::pushUpdate('clink::open', $array);
+			evend::add('clink::open', $array);
 		}
 	}
 
