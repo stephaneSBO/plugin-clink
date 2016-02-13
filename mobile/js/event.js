@@ -16,8 +16,6 @@ $('body').on('clink::open', function (_event,_options) {
 	}else{
 		var url = 'index.php?v=m&p='+cmd.configuration.type+'&'+cmd.configuration.type+'_id='+cmd.configuration.link;
 	}
-	var dialog = false;
-	
 	if(cmd.configuration.type == 'view'){
 		jeedom.view.all({
 			error: function (error) {
