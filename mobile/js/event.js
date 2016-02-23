@@ -16,6 +16,10 @@ $('body').on('clink::open', function (_event,_options) {
 	}else{
 		var url = 'index.php?v=m&p='+cmd.configuration.type+'&'+cmd.configuration.type+'_id='+cmd.configuration.link;
 	}
+	var dialog = false;
+	if(cmd.configuration.mode == 'modal'){
+		dialog = true;
+	}
 	if(cmd.configuration.type == 'view'){
 		jeedom.view.all({
 			error: function (error) {
@@ -28,7 +32,7 @@ $('body').on('clink::open', function (_event,_options) {
 						if (isset(views[i].display) && isset(views[i].display.icon)) {
 							icon = views[i].display.icon;
 						}
-						page('view',icon.replace(/\"/g, "\'") + ' ' + views[i].name,views[i].id);
+						page('view',icon.replace(/\"/g, "\'") + ' ' + views[i].name,views[i].id,'',dialog);
 					}
 				}
 			}
@@ -37,7 +41,7 @@ $('body').on('clink::open', function (_event,_options) {
 		var panel = cmd.configuration.link.split(":")
 		for (var i in plugins) {
 			if(plugins[i].id == panel[0]){
-				page(plugins[i].mobile, plugins[i].name,'',plugins[i].id);
+				page(plugins[i].mobile, plugins[i].name,'',plugins[i].id,dialog);
 			}
 		}
 	}else if(cmd.configuration.type == 'plan'){
