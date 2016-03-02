@@ -58,6 +58,7 @@
         tr += '<option value="view">{{Vue}}</option>';
         tr += '<option value="plan">{{Design}}</option>';
         tr += '<option value="panel">{{Panel}}</option>';
+        tr += '<option value="dashboard">{{Dashboard}}</option>';
         tr += '<option value="url">{{URL}}</option>';
         tr += '</select>';
         tr += '<div class="input-group-addon">{{Nom}}</div>';
@@ -149,6 +150,20 @@ $('#table_cmd tbody').on('change','.cmdAttr[data-l1key=configuration][data-l2key
                 var option = '<select class="form-control cmdAttr" data-l1key="configuration" data-l2key="link">';
                 for(var i in planHeaders){
                     option += '<option value="'+planHeaders[i].id+'">'+planHeaders[i].name+'</option>';
+                }
+                option += '</select>';
+                option_cmd.empty().append(option);
+                cmd.trigger('typeFinish');
+            }
+        });
+    }
+    if($(this).value() == 'dashboard'){
+        jeedom.object.all({
+            success : function(object){
+                var option = '<select class="form-control cmdAttr" data-l1key="configuration" data-l2key="link">';
+                option += '<option value="-1">{{Défaut}}</option>';
+                for(var i in object){
+                    option += '<option value="'+object[i].id+'">'+object[i].name+'</option>';
                 }
                 option += '</select>';
                 option_cmd.empty().append(option);
