@@ -3,10 +3,8 @@
     <id>clink</id>
     <name>Click link</name>
     <description>Plugin de gestion de lien et d'interface</description>
-    <icon>fa fa-external-link</icon>
     <licence>AGPL</licence>
-    <author>Loïc Gevrey</author>
-    <installation>Aucune</installation>
+    <author>Loïc</author>
     <require>1.209</require>
     <category>programming</category>
     <eventjs>1</eventjs>
