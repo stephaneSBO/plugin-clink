@@ -1,0 +1,5 @@
+= Clink
+
+Ce plugin permet la gestion de liens et d'évènements sur l'interface de Jeedom. Vous pourrez par exemple avec celui-ci créer une commande qui ouvre une modale (fenêtre de dialogue) avec une vue contenant vos caméras. Cela permet par exemple lorsque quelqu'un sonne chez vous d'afficher directement la caméra de l'entrée sur votre Jeedom.
+
+include::configuration.asciidoc[]
