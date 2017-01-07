@@ -1,12 +1,12 @@
 == Plugin Konfiguration
 
-Après téléchargement du plugin, il vous suffit juste d'activer celui-ci, il n'y a aucune configuration à ce niveau.
+Nachdem das Plugin heruntergeladen ist, müssen Sie es nur aktivieren, es gibt keine Konfiguration auf dieser Ebene.
 
 image::../images/clink1.PNG[]
 
 == Geräte Konfiguration
 
-La configuration des équipements Clink est accessible à partir du menu plugin : 
+Die Konfiguration von Clink-Geräten ist in dem Plugin-Menü verfügbar : 
 
 image::../images/clink2.PNG[]
 
