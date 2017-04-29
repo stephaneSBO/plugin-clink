@@ -6,7 +6,7 @@ image::../images/clink1.PNG[]
 
 == Configuration des équipements
 
-La configuration des équipements Clink est accessible à partir du menu plugin : 
+La configuration des équipements Clink est accessible à partir du menu Plugins : 
 
 image::../images/clink2.PNG[]
 
@@ -40,16 +40,16 @@ En mobile "nouvelle fenêtre" et "fenêtre courante" font la même chose : ouver
 * *Filtre page* : permet de filtrer pour n'ouvrir l'élément que si on est sur la page mentionnée
 [NOTE]
 En version mobile cette option ne fait rien
-* *Filtre interface* : permet de filtrer pour n'ouvrir l'élément que en version mobile/desktop ou sur les 2 
+* *Filtre interface* : permet de filtrer pour n'ouvrir l'élément qu'en version mobile/desktop ou sur les 2 
 * *Afficher* : permet d'afficher la donnée sur le dashboard
 * *Tester* : permet de tester la commande,
 * *Supprimer* (signe -) : permet de supprimer la commande.
 
 [IMPORTANT]
-Il ne faut surtout pas ouvrir la même vue sur elle-même, idem pour les design !
+Il ne faut surtout pas ouvrir la même vue sur elle-même, idem pour les designs !
 
 [IMPORTANT]
-En mobile l'ouverture d'une url ne peut être faite dans une modale comme pour les design.
+En mobile l'ouverture d'une URL ne peut pas être faite dans une modale comme pour les designs.
 
 [IMPORTANT]
-Toutes les urls ne peuvent être ouvertes en modale, cela dépend du site (ex : google.fr ne peut être ouvert dans une modale). Attention aussi si vous êtes en https, il faut absolument que le site à ouvrir dans la modale soit en https.
+Toutes les URLs ne peuvent être ouvertes en modale, cela dépend du site (ex : google.fr ne peut être ouvert dans une modale). Attention aussi si vous êtes en https, il faut absolument que le site à ouvrir dans la modale soit en https.
