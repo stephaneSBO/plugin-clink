@@ -1,0 +1,10 @@
+{
+	"id" : "clink",
+	"name" : "Click link",
+	"description" : "Plugin de gestion de lien et d'interface",
+	"licence" : "AGPL",
+	"author" : "Loïc",
+	"require" : "3.0",
+	"category" : "programming",
+	"event" : 1
+}
