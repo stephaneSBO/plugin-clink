@@ -1,4 +1,5 @@
 	$('body').on('clink::open', function (_event,_options) {
+		console.log(_options);
 		var cmd = _options;
 		if(cmd.configuration.filter_page != 'all' && window.location.href.indexOf('p='+cmd.configuration.filter_page) < 0){
 			return;
@@ -17,7 +18,9 @@
 		}else if(cmd.configuration.type == 'panel'){
 			var panel = cmd.configuration.link.split(":")
 			var url = 'index.php?v=d&m='+panel[0]+'&p='+panel[1];
-		}else{
+		}else if (cmd.configuration.type == 'dashboard'){ 
+			var url = 'index.php?v=d&p='+cmd.configuration.type+'&object_id='+cmd.configuration.link+'&noControl=1';
+		} else {
 			var url = 'index.php?v=d&p='+cmd.configuration.type+'&'+cmd.configuration.type+'_id='+cmd.configuration.link+'&noControl=1';
 		}
 		switch(cmd.configuration.mode) {

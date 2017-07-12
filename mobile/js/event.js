@@ -9,13 +9,6 @@ $('body').on('clink::open', function (_event,_options) {
 	if(isset(cmd.utid) && cmd.utid != utid){
 		return;
 	}
-	if(cmd.configuration.type == 'url'){
-		var url = cmd.configuration.link;
-	}else if(cmd.configuration.type == 'panel'){
-		var url = 'index.php?v=m&'+cmd.configuration.link;
-	}else{
-		var url = 'index.php?v=m&p='+cmd.configuration.type+'&'+cmd.configuration.type+'_id='+cmd.configuration.link;
-	}
 	var dialog = false;
 	if(cmd.configuration.mode == 'modal'){
 		dialog = true;
@@ -48,6 +41,23 @@ $('body').on('clink::open', function (_event,_options) {
 		window.location.href = 'index.php?v=d&p='+cmd.configuration.type+'&'+cmd.configuration.type+'_id='+cmd.configuration.link;
 	}else if(cmd.configuration.type == 'url'){
 		window.location.href = cmd.configuration.link;
+	} else if(cmd.configuration.type == 'dashboard'){
+		jeedom.object.all({
+        error: function (error) {
+            $('#div_alert').showAlert({message: error.message, level: 'danger'});
+        },
+        success: function (objects) {
+            for (var i in objects) {
+                if (objects[i].id == cmd.configuration.link) {
+                    var icon = '';
+                    if (isset(objects[i].display) && isset(objects[i].display.icon)) {
+                        icon = objects[i].display.icon;
+                    }
+					page('equipment',icon.replace(/\"/g, "\'") + ' ' + objects[i].name.replace(/\"/g, "\'"),objects[i].id,'',dialog);
+                }
+            }
+        }
+    });
 	}
 });
 
