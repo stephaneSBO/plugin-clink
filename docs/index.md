@@ -4,7 +4,7 @@ ouvre une modale (fenêtre de dialogue) avec une vue contenant vos
 caméras. Cela permet par exemple lorsque quelqu’un sonne chez vous
 d’afficher directement la caméra de l’entrée sur votre Jeedom.
 
-Configuration du plugin {#_configuration_du_plugin}
+Configuration du plugin
 =======================
 
 Après téléchargement du plugin, il vous suffit juste d’activer celui-ci,
@@ -12,7 +12,7 @@ il n’y a aucune configuration à ce niveau.
 
 ![clink1](images/clink1.PNG)
 
-Configuration des équipements {#_configuration_des_équipements}
+Configuration des équipements
 =============================
 
 La configuration des équipements Clink est accessible à partir du menu
@@ -97,7 +97,7 @@ En-dessous vous retrouvez la liste des commandes :
 > site (ex : google.fr ne peut être ouvert dans une modale). Attention
 > aussi si vous êtes en https, il faut absolument que le site à ouvrir
 > dans la modale soit en https.
-Configuration du plugin {#_configuration_du_plugin}
+Configuration du plugin
 =======================
 
 Après téléchargement du plugin, il vous suffit juste d’activer celui-ci,
@@ -105,7 +105,7 @@ il n’y a aucune configuration à ce niveau.
 
 ![clink1](images/clink1.PNG)
 
-Configuration des équipements {#_configuration_des_équipements}
+Configuration des équipements
 =============================
 
 La configuration des équipements Clink est accessible à partir du menu
